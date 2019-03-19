@@ -11,10 +11,15 @@ export default class Login extends Component {
       password: ""
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(type, value) {
     this.setState({ [type]: value });
+  }
+
+  handleSubmit() {
+    login(this.state, this.props.navigation);
   }
 
   render() {
@@ -36,8 +41,11 @@ export default class Login extends Component {
           style={ styles.input }
           ref={ input => this.passwordInput = input }
         />
-        <TouchableOpacity>
-          <Text></Text>
+        <TouchableOpacity
+          onPress={ this.handleSubmit }
+          style={ styles.button }
+        >
+          <Text style={ styles.buttonText }>Login</Text>
         </TouchableOpacity>
       </View>
     );
@@ -64,5 +72,20 @@ const styles = StyleSheet.create({
     color: "#000",
     textAlign: "center",
     marginTop: 10
+  },
+  button: {
+    width: "75%",
+    backgroundColor: "blue",
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    paddingVertical: 15
+  },
+  buttonText: {
+    color: "#FFF",
+    textAlign: "center",
+    fontSize: 15,
+    fontWeight: "bold"
   }
 });
